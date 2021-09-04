@@ -2,7 +2,9 @@
 using namespace std;
 
 int main(){
-    cout<<"Enter order of the required magic square : ";
     int n;
+    cout<<"Enter order of the required magic square : ";
+    int Magic_Square[n][n];
+    
     cin>>n;
 }
