@@ -7,9 +7,18 @@ int main(){
     int n, r, c, *ptr;
     cout<<"Enter order of the required magic square : ";
     cin>>n;
-    
-    int Magic_Square[n][n] = {0};
+    int Magic_Square[n][n];
+
+/*
+**For some reason Magic_Square[n][n] = {0}; was leaving some elements as unset(garbage value),
+**so I've manually set every element as 0
+*/
+    for(int i = 0; i < n ; i++)
+        for(int j = 0; j < n; j++)
+            Magic_Square[i][j] = 0;
+
     r = n/2; c = n-1;
+    
     for(int i = 1; i <= n*n; i++){
         Magic_Square[r][c] = i;
         r -= 1;
@@ -30,8 +39,8 @@ int main(){
                 goto wrapAround;
             }
     }
-
     print(n, (int*)Magic_Square);
+
 }
 
 void print(int n, int *ar){
