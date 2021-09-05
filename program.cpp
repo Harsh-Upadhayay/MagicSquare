@@ -1,10 +1,43 @@
 #include <iostream>
 using namespace std;
 
+void print(int n, int *ar);
+
 int main(){
-    int n;
+    int n, r, c, *ptr;
     cout<<"Enter order of the required magic square : ";
-    int Magic_Square[n][n];
-    
     cin>>n;
+    
+    int Magic_Square[n][n] = {0};
+    r = n/2; c = n-1;
+    for(int i = 1; i <= n*n; i++){
+        Magic_Square[r][c] = i;
+        r -= 1;
+        c += 1;
+
+        wrapAround:
+            if(-1 == r && n == c){
+                r = 0; 
+                c = n-2;
+            }
+            else if ( -1 == r)
+                r = n-1;
+            else if (n == c)
+                c = 0;
+            if(Magic_Square[r][c]){
+                r += 1;
+                c -= 2;
+                goto wrapAround;
+            }
+    }
+
+    print(n, (int*)Magic_Square);
+}
+
+void print(int n, int *ar){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++)
+            cout<<*((ar+i*n) + j)<<" ";
+        cout<<endl;
+    }
 }
